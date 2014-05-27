@@ -1,0 +1,9 @@
+Salut !
+Voila le repo git sur lequel on va pouvoir tous coder ensemble, n'hésitez pas a push vos codes.
+Pour ce qui est de la lib et des gens qui veulent la coder, voilà ce que je propose:
+- Des wrappers de fonctions de com ( déja en cours dans libTalk.js )
+- Une IA master qui réfléchi et transmet les ordres ( par défaut le premier poireau a jouer, sinon le second si il meurt)
+- Des IA spécifiques qui interpreterons et répondront au ordres. (1 par role : heal|buffs, tank, dps)
+
+Des que la lib aura un peu plus avancé, je ferais une doc sur le forum :)
+Voila voila.
