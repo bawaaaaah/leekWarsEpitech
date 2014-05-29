@@ -33,16 +33,19 @@ global		enemyTab	= [];
 */
 
 function sendPacket(dst, packet) {
-	if (getLevel() < 69)
-	    debugE("You must le level 69 to send packets, current lvl : " + getLevel());
-	if (fullDebug)
-		debug("sendPacket : sending (" + packet + ") to " + dst);
-	if (dst != "all") {
-		// On envoie un packet a un seul leek
-	}
-	else {
-		// On envoie un packet a tous les leeks
-	}
+    if (getLevel() < 69) {
+	debugE("You must le level 69 to send packets, current lvl : " + getLevel());
+	return (EXIT_ERR);
+    }
+    if (fullDebug)
+	debug("sendPacket : sending (" + packet + ") to " + dst);
+    if (dst != "all") {
+	// On envoie un packet a un seul leek
+    }
+    else
+	for (var i = 0; i < count(allyTab); i++)
+	    sendTo(allyTab[i], 0, packet)
+    retun (EXIT_OK);
 }
 
 /*
@@ -54,21 +57,21 @@ function sendPacket(dst, packet) {
 */
 
 function askForFocus(target) {
-	var targetCell = -1;
-	var packet     = null;
+    var targetCell = -1;
+    var packet     = null;
 
-	if (!isDead(target) && !isAlive(target)) {
-		// Petit glitch, ces deux fonctions renvoient false dans le cas d'un poireau invalide (Ex : ID = -1)
-		// On les utilise donc pour vérifier que le poireau target existe.
-		debugE("[COM] Ask for focus : leek ID " + target + " is invalid.");
-		return (EXIT_ERR);
-	}
-	packet = "FOCUS:" + target + ":" + targetCell;
-	if (fullDebug)
-		debug("Packet generated : " + packet);
-	sendPacket("all", packet);
- 	targetCell = getCell(target);
-
+    if (!isDead(target) && !isAlive(target)) {
+	// Petit glitch, ces deux fonctions renvoient false dans le cas d'un poireau invalide (Ex : ID = -1)
+	// On les utilise donc pour vérifier que le poireau target existe.
+	debugE("[COM] Ask for focus : leek ID " + target + " is invalid.");
+	return (EXIT_ERR);
+    }
+    packet = "FOCUS:" + target + ":" + targetCell;
+    if (fullDebug)
+	debug("Packet generated : " + packet);
+    sendPacket("all", packet);
+    targetCell = getCell(target);
+    return (EXIT_OK);
 }
 
 /*
@@ -83,9 +86,10 @@ function askForFocus(target) {
 */
 
 function askForHeal(target, critical_level) {
-    
 }
 
 function askForBuffs(target, buffs) {
+}
 
+function askForLiberation(target) {
 }
