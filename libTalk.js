@@ -57,7 +57,6 @@ function sendPacket(dst, packet) {
 */
 
 function askForFocus(target) {
-    var targetCell = -1;
     var packet     = null;
 
     if (!isDead(target) && !isAlive(target)) {
@@ -66,12 +65,10 @@ function askForFocus(target) {
 	debugE("[COM] Ask for focus : leek ID " + target + " is invalid.");
 	return (EXIT_ERR);
     }
-    packet = "FOCUS:" + target + ":" + targetCell;
+    packet = "FOCUS:" + target + ":" + getCell(target);
     if (fullDebug)
 	debug("Packet generated : " + packet);
-    sendPacket("all", packet);
-    targetCell = getCell(target);
-    return (EXIT_OK);
+    return (sendPacket("all", packet));
 }
 
 /*
