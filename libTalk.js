@@ -34,7 +34,7 @@ global		enemyTab	= [];
 
 function sendPacket(dst, packet) {
     if (getLevel() < 69) {
-	debugE("You must le level 69 to send packets, current lvl : " + getLevel());
+	debugE("You must be level 69 to send packets, current lvl : " + getLevel());
 	return (EXIT_ERR);
     }
     if (fullDebug)
